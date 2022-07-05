@@ -41,17 +41,17 @@ jobs:
       - name: Format
         run: |
           source .venv/bin/activate
-          black . --check
+          pre-commit run black --all-files
 
       - name: Type Check
         run: |
           source .venv/bin/activate
-          mypy .
+          pre-commit run mypy --all-files
 
       - name: Lint
         run: |
           source .venv/bin/activate
-          pylint $(git ls-files -- '*.py' ':!:**/migrations/*.py')
+          pre-commit run pyling --all-files
 
   test:
     name: Test
